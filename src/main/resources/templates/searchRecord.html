@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>查詢</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/menu.css">
+<link rel="stylesheet" href="css/table.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/echarts.js"></script>
+<script src="js/people.js"></script>
+<script>
+	verifyLogin(getToken());
+</script>
+<style>
+#btn_box {
+	margin-top: -15px;
+}
+
+#log_background {
+	height: 202pt;
+}
+
+table {
+	margin-left: calc(calc(100% - 1040px)/2);
+	width: 1040px;
+}
+</style>
+</head>
+<body>
+	<input type="checkbox" id="navbarToggle">
+	<header class="main-header">
+		<div class="containerM">
+			<nav>
+				<ul class="main-menu">
+					<li id="firstLi"><a href="choice">首頁</a></li>
+					<li><a href="search">查詢</a></li>
+					<li><a href="informationSheet">接種須知</a></li>
+					<li><a href="simulation">模擬資料</a></li>
+					<li><a href="javascript:void(0)" onclick=logout()>登出</a></li>
+				</ul>
+			</nav>
+			<label for="navbarToggle" class="navbarToggle"> <span
+				id="icon" class="entypo-down-open"></span> <span id="icon"
+				class="entypo-up-open"></span>
+			</label>
+		</div>
+	</header>
+	<div id="page">
+		<table id="data">
+			<thead>
+				<tr>
+					<th width="600px" colspan="2">個人資料</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+	<div id="footer">Copyright © 2022 LAI,MU-WEI. All rights
+		reserved.</div>
+	<script type="text/javascript">
+   		var url = "api/user/searchRecord";
+   		var token=getToken();
+   		var bearer = "Bearer "+token;
+   		params = {token: token};
+   	    $.ajax({
+   			type: "POST",
+   			url: url,
+   			data: params,
+   			beforeSend: function(request){
+   				request.setRequestHeader("Authorization", bearer);
+   			},
+   			success: function(respone) {
+   				if(respone[0]==null){
+   					alert("您尚未施打疫苗，將返回上一頁");
+   					window.location.href="search";
+   				}
+   				let length=respone.length;
+   				if(length==1){
+   					$("table").css("position","absolute");
+   					$("table").css("top","calc(calc(100% - 401px)/2)");
+   				}else if(length==2){
+   					$("table").css("position","absolute");
+   					$("table").css("top","calc(calc(100% - 651px)/2)");
+   				}else if(length==3){
+   					$("table").css("margin-top","1.5%");
+   					$("table").css("margin-bottom","1.5%");
+   				}else{
+   					$("table").css("margin-top","2.5%");
+   					$("table").css("margin-bottom","2.5%");
+   				}
+   				add(respone);
+            },
+   			error: function(){
+   				alert("閒置過久，系統已自動登出，請重新登入");
+   				window.location.href="index";
+   			}
+   		});
+   	    var saints = {
+   	    	0: ["身分證字號"],
+   	    	1: ["姓名"],
+   	    	2: ["接種序數"],
+   	    	3: ["疫苗廠牌"],
+   	    	4: ["施打院所名稱"],
+   	    	5: ["施打院所地址"],
+   	    	6: ["施打日期"]
+   	    };
+    	function add(respone){
+            let table=document.getElementById("data");
+            for(var i=0; i<2; i++){
+            	let newRow=table.insertRow();
+                let cellTitle=newRow.insertCell();
+                let cellValue=newRow.insertCell();
+                cellTitle.innerHTML=saints[i];
+                cellValue.innerHTML=respone[0][i];
+            }
+            for(var i=0; i<respone.length; i++){
+                for(var j=2; j<respone[0].length; j++){
+                    let newRow=table.insertRow();
+                    let cellTitle=newRow.insertCell();
+                    let cellValue=newRow.insertCell();
+                    cellTitle.innerHTML=saints[j];
+                    cellValue.innerHTML=respone[i][j];
+                }
+            }
+        }
+    </script>
+</body>
+</html>

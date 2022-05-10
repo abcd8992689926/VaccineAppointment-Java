@@ -1,0 +1,211 @@
+<html>
+<head>
+<title>查詢</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/menu.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/echarts.js"></script>
+<script src="js/people.js"></script>
+<script>
+	verifyLogin(getToken());
+</script>
+<style>
+    #btn_box{
+      margin-top: -15px;
+    }
+    #twCounty{
+    	font-size:22pt;
+        border-radius:12px;
+        width:95pt;
+        text-align:center;
+        margin:20 0 0 103pt;
+    }
+    #twDistrict{
+    	font-size:22pt;
+        border-radius:12px;
+        width:95pt;
+        text-align:center;
+    }
+    #log_background{
+    	height:202pt;
+    }
+</style>
+</head>
+<body>
+        <input type="checkbox" id="navbarToggle">
+        <header class="main-header">
+          <div class="containerM">
+            <nav>
+              <ul class="main-menu">
+                <li id="firstLi"><a href="choice">首頁</a></li>
+                <li><a href="search">查詢</a></li>
+                <li><a href="informationSheet">接種須知</a></li>
+                <li><a href="simulation">模擬資料</a></li>
+                <li><a href="javascript:void(0)" onclick=logout()>登出</a></li>
+              </ul>
+            </nav>
+            <label for="navbarToggle" class="navbarToggle">
+                <span id="icon" class="entypo-down-open"></span>
+                <span id="icon" class="entypo-up-open"></span>
+            </label>
+          </div>
+        </header>
+<div id="container"></div>
+		<div id="page">
+	        <div id="log_background">
+            <div id="content">
+	            <p id="title">查詢</p>
+	            <p id="title2">選擇您欲查詢區域</p>
+                <select id="twCounty">
+	    <option value="0">臺北市</option>
+	    <option value="1">臺中市</option>
+	    <option value="2">基隆市</option>
+	    <option value="3">臺南市</option>
+	    <option value="4">高雄市</option>
+	    <option value="5">新北市</option>
+	    <option value="6">宜蘭縣</option>
+	    <option value="7">桃園縣</option>
+	    <option value="8">新竹縣</option>
+	    <option value="9">苗栗縣</option>
+	    <option value="10">臺中縣</option>
+	    <option value="11">南投縣</option>
+	    <option value="12">彰化縣</option>
+	    <option value="13">雲林縣</option>
+	    <option value="14">嘉義縣</option>
+	    <option value="15">臺南縣</option>
+	    <option value="16">高雄縣</option>
+	    <option value="17">屏東縣</option>
+	    <option value="18">花蓮縣</option>
+	    <option value="19">臺東縣</option>
+	    <option value="20">澎湖縣</option>
+	    <option value="22">金門縣</option>
+	    <option value="23">連江縣</option>
+	    <option value="24">嘉義市</option>
+	    <option value="25">新竹市</option>
+	</select>
+				<select id="twDistrict">
+                    <option value="0">中正區</option>
+				    <option value="1">大同區</option>
+				    <option value="2">中山區</option>
+				    <option value="3">松山區</option>
+				    <option value="4">大安區</option>
+				    <option value="5">萬華區</option>
+				    <option value="6">信義區</option>
+				    <option value="7">士林區</option>
+				    <option value="8">北投區</option>
+				    <option value="9">內湖區</option>
+				    <option value="10">南港區</option>
+				    <option value="11">文山區</option>
+                </select>
+				<div id="btn_box"><a href="javascript:void(0)" onclick=searchDistrict()>查詢</a></div>
+            </div>
+        </div>
+		</div>
+        <div id="footer">Copyright © 2022 LAI,MU-WEI. All rights reserved.</div>
+    <script type="text/javascript">
+	    var saints = {
+	    	    0: ['中正區', '大同區', '中山區', '松山區', '大安區', '萬華區', '信義區', '士林區', '北投區', '內湖區', '南港區', '文山區'],
+	    		1: ['太平區', '大里區', '霧峰區', '烏日區', '豐原區', '后里區', '石岡區', '東勢區', '和平區', '新社區', '潭子區', '大雅區', '神岡區', '大肚區', '沙鹿區', '龍井區', '梧棲區', '清水區', '大甲區', '外埔區', '大安區'],
+	    		2: ['仁愛區', '信義區', '中正區', '中山區', '安樂區', '暖暖區', '七堵區'],
+	    		3: ['永康區', '歸仁區', '新化區', '左鎮區', '玉井區', '楠西區', '南化區', '仁德區', '關廟區', '龍崎區', '官田區', '麻豆區', '佳里區', '西港區', '七股區', '將軍區', '學甲區', '北門區', '新營區', '後壁區', '白河區', '東山區', '六甲區', '下營區', '柳營區', '鹽水區', '善化區', '大內區', '山上區', '新市區', '安定區'],
+	    		4: ['仁武區', '大社區', '岡山區', '路竹區', '阿蓮區', '田寮區', '燕巢區', '橋頭區', '梓官區', '彌陀區', '永安區', '湖內區', '鳳山區', '大寮區', '林園區', '鳥松區', '大樹區', '旗山區', '美濃區', '六龜區', '內門區', '杉林區', '甲仙區', '桃源區', '那瑪夏', '茂林區', '茄萣區'],
+	    		5: ['萬里區', '金山區', '板橋區', '汐止區', '深坑區', '石碇區', '瑞芳區', '平溪區', '雙溪區', '貢寮區', '新店區', '坪林區', '烏來區', '永和區', '中和區', '土城區', '三峽區', '樹林區', '鶯歌區', '三重區', '新莊區', '泰山區', '林口區', '蘆洲區', '五股區', '八里區', '淡水區', '三芝區', '石門區'],
+	    	    6: ['宜蘭市', '頭城鎮', '礁溪鄉', '壯圍鄉', '員山鄉', '羅東鎮', '三星鄉', '大同鄉', '五結鄉', '冬山鄉', '蘇澳鎮', '南澳鄉'],
+	    	    7: ['中壢區', '平鎮區', '龍潭區', '楊梅區', '新屋區', '觀音區', '桃園區', '龜山區', '八德區', '大溪區', '復興區', '大園區', '蘆竹區'],
+	    	    8: ['竹北市', '湖口鄉', '新豐鄉', '新埔鎮', '關西鎮', '芎林鄉', '寶山鄉', '竹東鎮', '五峰鄉', '橫山鄉', '尖石鄉', '北埔鄉','峨眉鄉'],
+	    	    9: ['竹南鎮', '頭份市', '三灣鄉', '南庄鄉', '獅潭鄉', '後龍鎮', '通霄鎮', '苑裡鎮', '苗栗市', '造橋鄉', '頭屋鄉', '公館鄉', '大湖鄉', '泰安鄉', '銅鑼鄉', '三義鄉', '西湖鄉', '卓蘭鎮'],
+	    	    10: ['中區', '東區', '南區', '西區', '北區', '北屯區', '西屯區', '南屯區'],
+	    	    11: ['南投市', '中寮鄉', '草屯鎮', '國姓鄉', '埔里鎮', '仁愛鄉', '名間鄉', '集集鎮', '水里鄉', '魚池鄉', '信義鄉', '竹山鎮', '鹿谷鄉'],
+	    	    12: ['彰化市', '芬園鄉', '花壇鄉', '秀水鄉', '鹿港鎮', '福興鄉', '線西鄉', '和美鎮', '伸港鄉', '員林市', '社頭鄉', '永靖鄉', '埔心鄉', '溪湖鎮', '大村鄉', '埔鹽鄉', '田中鎮', '北斗鎮', '田尾鄉', '埤頭鄉', '溪州鄉', '竹塘鄉', '二林鎮', '大城鄉', '芳苑鄉', '二水鄉'],
+	    	    13: ['斗南鎮', '大埤鄉', '虎尾鎮', '土庫鎮', '褒忠鄉', '東勢鄉', '臺西鄉', '崙背鄉', '麥寮鄉', '斗六市', '林內鄉', '古坑鄉', '莿桐鄉', '西螺鎮', '二崙鄉', '北港鎮', '水林鄉', '口湖鄉', '四湖鄉', '元長鄉'],
+	    	    14: ['番路鄉', '梅山鄉', '竹崎鄉', '阿里山', '中埔鄉', '大埔鄉', '水上鄉', '鹿草鄉', '太保市', '朴子市', '東石鄉', '六腳鄉', '新港鄉', '民雄鄉', '大林鎮', '溪口鄉', '義竹鄉', '布袋鎮'],
+	    	    15: ['中西區', '東區', '南區', '北區', '安平區', '安南區'],
+	    		16: ['新興區', '前金區', '苓雅區', '鹽埕區', '鼓山區', '旗津區', '前鎮區', '三民區', '楠梓區', '小港區', '左營區'],
+	    		17: ['屏東市', '三地門', '霧臺鄉', '瑪家鄉', '九如鄉', '里港鄉', '高樹鄉', '鹽埔鄉', '長治鄉', '麟洛鄉', '竹田鄉', '內埔鄉', '萬丹鄉', '潮州鎮', '泰武鄉', '來義鄉', '萬巒鄉', '崁頂鄉', '新埤鄉', '南州鄉', '林邊鄉', '東港鎮', '琉球鄉', '佳冬鄉', '新園鄉', '枋寮鄉', '枋山鄉', '春日鄉', '獅子鄉', '車城鄉', '牡丹鄉', '恆春鎮', '滿州鄉'],
+	    		18: ['花蓮市', '新城鄉', '秀林鄉', '吉安鄉', '壽豐鄉', '鳳林鎮', '光復鄉', '豐濱鄉', '瑞穗鄉', '萬榮鄉', '玉里鎮', '卓溪鄉', '富里鄉'],
+	    		19: ['臺東市', '綠島鄉', '蘭嶼鄉', '延平鄉', '卑南鄉', '鹿野鄉', '關山鎮', '海端鄉', '池上鄉', '東河鄉', '成功鎮', '長濱鄉', '太麻里鄉', '金峰鄉', '大武鄉', '達仁鄉'],
+	    		20: ['馬公市', '西嶼鄉', '望安鄉', '七美鄉', '白沙鄉', '湖西鄉'],
+	    		22: ['金沙鎮', '金湖鎮', '金寧鄉', '金城鎮', '烈嶼鄉'],
+	    		23: ['南竿鄉', '北竿鄉', '莒光鄉', '東引鄉'],
+	    		24: ['東區', '西區'],
+	    		25: ['東區', '北區', '香山區']
+	    	};
+    	//取得兩個選單
+    	var main = document.getElementById('twCounty');
+    	var sub = document.getElementById('twDistrict');
+    	//設定監聽器
+    	main.addEventListener('change', function () {
+    	    //取得被選中的值
+    	    var selected_option = saints[this.value];
+    	    //清空副選單現有的值
+    	    while (sub.options.length > 0) {
+    	        sub.options.remove(0);
+    	    }
+    	    //列出副選單新的值
+    	    let point=0;
+    	    Array.from(selected_option).forEach(function (el) {
+    	        let option = new Option(el, el);
+    	        option.setAttribute("value", point);
+    	        sub.appendChild(option);
+    	        point++;
+    	    });
+    	});
+    	function searchDistrict(){
+    		var url = "api/user/searchDistrict";
+    		var bearer = "Bearer "+getToken();
+    		let county=$('#twCounty').val();
+    		let district=$('#twDistrict').val();
+    		params = {county: county, district: district};
+    	    $.ajax({
+    			type: "POST",
+    			url: url,
+    			data: params,
+    			beforeSend: function(request){
+    				request.setRequestHeader("Authorization", bearer);
+    			},
+    			success: function(respone) {
+    				$("#container").show();
+        			respone[district]={value: respone[district], itemStyle: {color: '#a90000'}};
+        			//繪圖
+        	    	var dom = document.getElementById("container");
+        			var myChart = echarts.init(dom);
+        			var app = {};
+        			var option;
+        			option = { 
+    				  tooltip: {
+    				    trigger: 'axis',
+    				    axisPointer: {
+    				      type: 'shadow'
+    				    }
+    				  },
+        			  xAxis: {
+        			    type: 'category',
+        			    data: saints[county],
+    	   			    axisTick: {
+    	   			    	alignWithLabel: true
+    	   			    }
+        			  },
+        			  yAxis: {
+        			    type: 'value'
+        			  },
+        			  series: [
+        			    {
+        			      data: respone,
+        			      type: 'bar'
+        			    }
+        			  ]
+        			};
+        			if (option && typeof option === 'object') {
+        			    myChart.setOption(option);
+        			}
+        			$("#page").hide();
+    			},
+    			error: function(){
+    				alert("閒置過久，系統已自動登出，請重新登入");
+    				window.location.href="index";
+    			}
+    		});
+    	}
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>疫苗預約平台</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/menu.css">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="js/people.js"></script>
+		<script>
+			verifyLogin(getToken());
+		</script>
+		<style>
+			#page{
+				display: flex;
+				justify-content: center;    
+				align-content: center;      
+				flex-wrap: wrap;
+			}
+			.main-header{
+				width: 414px;
+				left: calc(calc(100% - 414px)/2);
+			}
+			.choiceBtn{
+				width: 394px;
+				margin: 0 15 0 15;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="page">
+			<input type="checkbox" id="navbarToggle">
+	        <header class="main-header">
+	          <div class="containerM">
+	            <nav>
+	              <ul class="main-menu">
+                    <li id="firstLi"><a href="choice">首頁</a></li>
+	                <li><a href="search">查詢</a></li>
+	                <li><a href="simulation">模擬資料</a></li>
+	                <li><a href="javascript:void(0)" onclick=logout()>登出</a></li>
+	              </ul>
+	            </nav>
+	            <label for="navbarToggle" class="navbarToggle">
+	                <span id="icon" class="entypo-down-open"></span>
+	                <span id="icon" class="entypo-up-open"></span>
+	            </label>
+	          </div>
+	        </header>
+				<a href="https://www.cdc.gov.tw/File/Get/6nMbNejvp44a7RYU2nq0rw" target="_blank" title="Moderna COVID-19 疫苗接種須知"><div class="choiceBtn">Moderna</div></a>
+				<a href="https://www.cdc.gov.tw/File/Get/rj530AJTe4wWbKNVjY1tTA" target="_blank" title="BioNTech COVID-19 疫苗接種須知"><div class="choiceBtn">BioNTech</div></a>
+				<a href="https://www.cdc.gov.tw/File/Get/_uTKYGLMyQeaEG-fQ9pjnw" target="_blank" title="AstraZeneca COVID-19 疫苗接種須知"><div class="choiceBtn">AstraZeneca</div></a>
+				<a href="https://www.cdc.gov.tw/File/Get/7O6rpBKfhZCskmmS4iSOTw" target="_blank" title="MVC COVID-19 疫苗接種須知"><div class="choiceBtn" id="MVC">MVC COVID-19 Vaccine</div></a>
+		</div>
+		<div id="footer">Copyright © 2022 LAI,MU-WEI. All rights reserved.</div>
+	</body>
+</html>

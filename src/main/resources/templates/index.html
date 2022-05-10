@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>疫苗預約平台</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/people.js"></script>
+<script>
+	Logined(getToken());
+</script>       
+</head>
+<body>
+	<div id="page">
+        <div id="log_background">
+            <div id="content">
+                <form id="form_id">
+                <p id="title">登入</p>
+                <p id="title2">驗證您的身分以使用所有功能</p>
+                <p id="title2">使用您的身分證字號</p>
+                    <br>
+                    <input type="text" placeholder="身分證字號" id="id_input" name="id_input" size="26" maxlength="10" onkeyup="value=value.toUpperCase().replace(/[^\w]/g,'')" >
+                    <p></p>
+                    <div id="NHI_input">
+                        <input type="text" placeholder="健保卡號" class="NHI_id_input" name="NHI_1" size="4" maxlength="4"><input type="text" class="NHI_id_input" name="NHI_2" size="4" maxlength="4"><input type="text" class="NHI_id_input" name="NHI_3" size="4" maxlength="4">
+                    </div>
+                    <div id="btn_box"><a href="javascript:void(0)" onclick=check()>執行身分認證</a></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="footer">Copyright © 2022 LAI,MU-WEI. All rights reserved.</div>
+</body>
+<script src="js/login.js"></script>
+</html>

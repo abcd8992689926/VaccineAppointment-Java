@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>查詢</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/menu.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/echarts.js"></script>
+<script src="js/people.js"></script>
+<script>
+	verifyLogin(getToken());
+</script>
+</head>
+<body>
+	<input type="checkbox" id="navbarToggle">
+	<header class="main-header">
+		<div class="containerM">
+			<nav>
+				<ul class="main-menu">
+					<li id="firstLi"><a href="choice">首頁</a></li>
+					<li><a href="search">查詢</a></li>
+					<li><a href="informationSheet">接種須知</a></li>
+					<li><a href="simulation">模擬資料</a></li>
+					<li><a href="javascript:void(0)" onclick=logout()>登出</a></li>
+				</ul>
+			</nav>
+			<label for="navbarToggle" class="navbarToggle"> <span
+				id="icon" class="entypo-down-open"></span> <span id="icon"
+				class="entypo-up-open"></span>
+			</label>
+		</div>
+	</header>
+	<div id="container"></div>
+	<div id="footer">Copyright © 2022 LAI,MU-WEI. All rights
+		reserved.</div>
+	<script type="text/javascript">
+		var url = "api/user/searchHosp";
+		var bearer = "Bearer "+getToken();
+	    $.ajax({
+			type: "POST",
+			url: url,
+			beforeSend: function(request){
+				request.setRequestHeader("Authorization", bearer);
+			},
+			success: function(respone) {
+				$('#container').show();
+	    	    //繪圖
+	    	   	var dom = document.getElementById("container");
+				var myChart = echarts.init(dom);
+				var app = {};
+				var option;
+				option = {
+				  tooltip: {
+				    trigger: 'item'
+				  },
+				  legend: {
+				    top: '90%',
+				    left: 'center',
+				    fontSize: '40',
+				  },
+				  series: [
+				    {
+				      type: 'pie',
+				      radius: ['40%', '70%'],
+				      avoidLabelOverlap: false,
+				      itemStyle: {
+				        borderRadius: 10,
+				        borderColor: '#fff',
+				        borderWidth: 2
+				      },
+				      emphasis: {
+				        label: {
+				          show: true,
+				          fontSize: '40',
+				          fontWeight: 'bold'
+				        }
+				      },
+				      label: {
+				          fontSize: 18,
+				          formatter: '{b}({d}%)',
+				          color: 'black'
+				        },
+				      data: [
+				        { value: respone[0], name: '公立醫院' },
+				        { value: respone[1], name: '私法人醫院' },
+				        { value: respone[2], name: '衛生所' },
+				        { value: respone[3], name: '診所' }
+				      ]
+				    }
+				  ]
+				};
+	    	    if (option && typeof option === 'object') {
+	    	    	    myChart.setOption(option);
+	    	    }
+            },
+			error: function(){
+				alert("閒置過久，系統已自動登出，請重新登入");
+				window.location.href="index";
+			}
+		});
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+@import url(https://weloveiconfonts.com/api/?family=entypo);
+/* entypo */
+[class*="entypo-"]:before {
+    font-family: 'entypo', sans-serif;
+}
+li {
+    list-style-type: none;
+}
+.main-header a {
+    display: block;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 22pt;
+}
+.main-header {
+    position: absolute;
+    top:0;
+    z-index: 900;
+    left: calc(calc(100% - 561px)/2);
+    background-color: #0000004D;
+    position: relative;
+    transform: translateY(-100%);
+    position:fixed;
+	top:0;
+	z-index:1;
+	height: 57pt;
+ 	margin-top: -12pt;
+}
+#navbarToggle {
+    display: none;
+}
+#navbarToggle:checked~.main-header {
+    transform: translateY(0);
+}
+.main-menu {
+    display: flex;
+    position: relative;
+}
+.main-menu li {
+    position: relative;
+    transition: .5s;
+}
+.main-menu li a {
+    padding: 0 15px;
+    line-height: 60px;
+}
+.main-menu>li::after {
+    content: '';
+    position: absolute;
+    height: 4px;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    background-color: #FFFFFF;
+    transition: .5s;
+    border-radius: 0 0 6px 6  px;
+}
+.main-menu li:hover {
+    background-color: #00000066;
+    border-radius: 0 0 6px 6px;
+}
+.main-menu>li:hover::after {
+    left: 0;
+    right: 0;
+}
+.containerM label {
+    display: inline-block;
+    background-color: #0000004D;
+    position: absolute;
+    left: calc(50% - 30px);
+    transform: translateY(100%);
+    border-radius: 0 0 6px 6px;
+    cursor: pointer;
+    width: 60px;
+    height: 45px;
+    margin-top: -45.5px;
+}
+#icon{
+    position: relative;
+    bottom: 12px;
+    left: 11px;
+    font-size: 4em;
+}
+.entypo-up-open{
+    display: none;
+}
+#navbarToggle:checked~.main-header .navbarToggle .entypo-down-open {
+    display: none;
+}
+#navbarToggle:checked~.main-header .navbarToggle .entypo-up-open {
+    display: block;
+}
+#navbarToggle:checked~.main-header .containerM label {
+    margin-top: -61.5px;
+}
+.main-header {
+	width: 561px;
+    padding-inline-start: -40px;
+    border-radius: 0 0 6px 6px;
+}
+#firstLi {
+    margin-left: -40px;
+} 

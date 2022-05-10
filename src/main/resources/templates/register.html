@@ -1,0 +1,179 @@
+<html>
+	<head>
+		<title>疫苗預約平台</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/menu.css">
+		<link rel="stylesheet" href="css/zip.css">
+		<link rel="stylesheet" href="css/table.css">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="js/people.js"></script>
+		<script src="js/table.js"></script>
+		<script>
+			verifyLogin(getToken());
+		</script>
+		<style>
+		    #log_background{
+		    	height:666px;
+		    	top: calc(calc(100% - 666px)/2);
+		    }
+		    #zip{
+				margin:7 0 14 40;
+				font-size: 19pt;
+		    }
+		    #twCounty{
+		    	font-size:20pt;
+		    	margin-left:15pt;
+		    }
+		    #twDistrict{
+		    	font-size:20pt;
+		    }
+		    #vaccineBox{
+				margin:20 0 14 40;
+				font-size: 19pt;
+		    }
+		    .vaccine_checkbox{
+		    	width:15pt;
+		    	height:15pt;
+		    	margin-top:12;
+		    }
+		    #left{
+		    	width: 116px;
+		    	line-height: 156px;
+		    	float: left;
+		    }
+		    #right{
+		    	height: 120px;
+		    }
+		    #btn_box{
+			    top: 35pt;
+			}
+			table{
+   				width: 1040px;
+   				min-height:250px;
+	    	}
+			#check{
+				position: absolute;
+				top: calc(calc(100% - 401px)/2);
+				margin-left: calc(calc(100% - 1040px)/2);
+				display:none;
+			}
+			.checkBtn{
+				top: -20pt !important;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="page">
+			<input type="checkbox" id="navbarToggle">
+	        <header class="main-header">
+	          <div class="containerM">
+	            <nav>
+	              <ul class="main-menu">
+	                <li id="firstLi"><a href="choice">首頁</a></li>
+	                <li><a href="search">查詢</a></li>
+	                <li><a href="#">注意事項</a></li>
+	                <li><a href="javascript:void(0)" onclick=logout()>登出</a></li>
+	              </ul>
+	            </nav>
+	            <label for="navbarToggle" class="navbarToggle">
+	                <span id="icon" class="entypo-down-open"></span>
+	                <span id="icon" class="entypo-up-open"></span>
+	            </label>
+	          </div>
+	        </header>
+			<div id="log_background">
+				<div id="content">
+					<form id="form_id">
+						<p id="title">意願登記</p>
+						<p id="title2">選擇欲施打地區以及偏好廠牌</p>
+               			<p id="title2">用以完成意願登記</p>
+               			<br>
+						<input type="text" placeholder="身分證字號" id="id_input" name="id" size="26" maxlength="10" readonly='true'>
+	                    <p></p>
+	                    <input type="text" placeholder="姓名" id="id_input" name="name" size="26" maxlength="10" readonly='true'>
+						<p></p>
+						<input type="text" placeholder="手機號碼" class="phone_num" id="id_input" name="phone_num" size="26" maxlength="10">
+						<br>
+						<div id="zip">
+							欲施打地區:
+							<select id="twCounty">
+							    <option value="0">臺北市</option>
+							    <option value="1">臺中市</option>
+							    <option value="2">基隆市</option>
+							    <option value="3">臺南市</option>
+							    <option value="4">高雄市</option>
+							    <option value="5">新北市</option>
+							    <option value="6">宜蘭縣</option>
+							    <option value="7">桃園縣</option>
+							    <option value="8">新竹縣</option>
+							    <option value="9">苗栗縣</option>
+							    <option value="10">臺中縣</option>
+							    <option value="11">南投縣</option>
+							    <option value="12">彰化縣</option>
+							    <option value="13">雲林縣</option>
+							    <option value="14">嘉義縣</option>
+							    <option value="15">臺南縣</option>
+							    <option value="16">高雄縣</option>
+							    <option value="17">屏東縣</option>
+							    <option value="18">花蓮縣</option>
+							    <option value="19">臺東縣</option>
+							    <option value="20">澎湖縣</option>
+							    <option value="22">金門縣</option>
+							    <option value="23">連江縣</option>
+							    <option value="24">嘉義市</option>
+							    <option value="25">新竹市</option>
+							</select>
+							<select id="twDistrict">
+			                    <option value="0">中正區</option>
+							    <option value="1">大同區</option>
+							    <option value="2">中山區</option>
+							    <option value="3">松山區</option>
+							    <option value="4">大安區</option>
+							    <option value="5">萬華區</option>
+							    <option value="6">信義區</option>
+							    <option value="7">士林區</option>
+							    <option value="8">北投區</option>
+							    <option value="9">內湖區</option>
+							    <option value="10">南港區</option>
+							    <option value="11">文山區</option>
+			                </select>
+						</div>
+						<div id="vaccineBox">
+							<div id="left">
+								偏好廠牌:
+	                        </div>
+	                        <div id="right">
+	                        	<input type="checkbox" class="vaccine_checkbox" id="Modena" name="vaccine[]" value="0"><label for="Modena"> Moderna</label>
+	                            <br>
+	                            <input type="checkbox" class="vaccine_checkbox" id="BNT" name="vaccine[]" value="1"><label for="BNT"> BioNTech</label>
+	                            <br>
+	                            <input type="checkbox" class="vaccine_checkbox" id="AZ" name="vaccine[]" value="2"><label for="AZ"> AstraZeneca</label>
+	                            <br>
+	                            <input type="checkbox" class="vaccine_checkbox" id="MVC" name="vaccine[]" value="3"><label for="MVC"> MVC COVID-19 Vaccine</label>
+	                        </div>
+                        </div>
+                        <div id="btn_box"><a href="javascript:void(0)" onclick=checkData()>送出</a></div>
+					</form>
+				</div>
+			</div>
+			<div id="check">
+				<table id="data">
+					<thead>
+						<tr>
+		    				<th width="600px" colspan="2">請確認輸入的資料無誤</th>
+					 	</tr>
+					</thead>
+					<tbody>
+	  				</tbody>
+				</table>
+				<div id="btn_box" class="checkBtn"><a href="javascript:void(0)" onclick=send_register()>確認</a></div>
+			</div>
+		</div>
+		<div id="footer">Copyright © 2022 LAI,MU-WEI. All rights reserved.</div>
+	</body>
+	<script src="js/register.js"></script>
+	<script src="js/zip.js"></script>
+	<script>
+		getName(getToken());
+	</script>
+</html>

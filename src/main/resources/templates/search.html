@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>查詢</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/menu.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/people.js"></script>
+<script>
+	verifyLogin(getToken());
+</script>
+<style>
+  .item{
+    margin:10px 0 0 10px;
+  }
+  .area{
+    width: 100%;
+    height: 180px;
+  }
+  #page{
+  	position: relative;
+	min-height: calc(100% - 26pt);
+  }
+  #content{
+	position: absolute;
+  	top:20%;
+  	width: 80%;
+  	left: calc(calc(100% - 1350px)/2);
+  }
+  a{
+  	color: black;
+  }
+  #personal{
+  	margin-top: 10pt;
+  }
+     .main-header {
+		width: 472px;
+		left: calc(calc(100% - 472px)/2);
+	}
+</style>
+</head>
+<body>
+		<input type="checkbox" id="navbarToggle">
+        <header class="main-header">
+          <div class="containerM">
+            <nav>
+              <ul class="main-menu">
+                <li id="firstLi"><a href="choice">首頁</a></li>
+                <li><a href="informationSheet">接種須知</a></li>
+                <li><a href="simulation">模擬資料</a></li>
+                <li><a href="javascript:void(0)" onclick=logout()>登出</a></li>
+              </ul>
+            </nav>
+            <label for="navbarToggle" class="navbarToggle">
+                <span id="icon" class="entypo-down-open"></span>
+                <span id="icon" class="entypo-up-open"></span>
+            </label>
+          </div>
+        </header>
+        <div id="page">
+          <div id="content">
+	          <div id="lave" class="area">
+	            <div class="item">疫苗剩餘劑量</div>
+	            <a href="searchCounty"><div class="choiceBtn">城市總數量</div></a>
+	            <a href="searchDistrict"><div class="choiceBtn">區域總數量</div></a>
+	            <a href="searchHosp"><div class="choiceBtn">各級醫院總數量</div></a>
+	            <a href="searchDistrictDetail"><div class="choiceBtn">區域各診所數量</div></a>
+	          </div>
+	          <div id="personal" class="area">
+	            <div class="item">個人相關資料</div>
+	            <a href="searchPersonal"><div class="choiceBtn">個人資料</div></a>
+	            <a href="searchRecord"><div class="choiceBtn">疫苗卡</div></a>
+	          </div>
+          </div>
+        </div>
+        <div id="footer">Copyright © 2022 LAI,MU-WEI. All rights reserved.</div>
+</body>
+</html>

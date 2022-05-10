@@ -1,0 +1,12 @@
+td, th {
+    padding: 5px 10px;
+}
+table, td, th {
+    border: 1px solid #FFFFFF;
+}
+table {
+    border-collapse: collapse;
+    font-size:22pt;
+    background:#DFDCD7;
+    border-radius: 30px;
+}

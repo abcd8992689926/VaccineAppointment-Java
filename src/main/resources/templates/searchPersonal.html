@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>查詢</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/menu.css">
+<link rel="stylesheet" href="css/table.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/echarts.js"></script>
+<script src="js/people.js"></script>
+<script src="js/table.js"></script>
+<script>
+	verifyLogin(getToken());
+</script>
+<style>
+table {
+	width: 1040px;
+	min-height: 451px;
+}
+
+#table {
+	position: absolute;
+	top: calc(calc(100% - 451px - 25px)/2);
+	margin-left: calc(calc(100% - 1040px)/2);
+}
+
+.modifyBtn {
+	top: -20pt !important;
+}
+</style>
+</head>
+<body>
+	<input type="checkbox" id="navbarToggle">
+	<header class="main-header">
+		<div class="containerM">
+			<nav>
+				<ul class="main-menu">
+					<li id="firstLi"><a href="choice">首頁</a></li>
+					<li><a href="search">查詢</a></li>
+					<li><a href="informationSheet">接種須知</a></li>
+					<li><a href="simulation">模擬資料</a></li>
+					<li><a href="javascript:void(0)" onclick=logout()>登出</a></li>
+				</ul>
+			</nav>
+			<label for="navbarToggle" class="navbarToggle"> <span
+				id="icon" class="entypo-down-open"></span> <span id="icon"
+				class="entypo-up-open"></span>
+			</label>
+		</div>
+	</header>
+	<div id="page">
+		<div id="table">
+			<table id="data">
+				<thead>
+					<tr>
+						<th width="600px" colspan="2">個人資料</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<div id="btn_box" class="modifyBtn">
+				<a href="register">更改</a>
+			</div>
+		</div>
+	</div>
+	<div id="footer">Copyright © 2022 LAI,MU-WEI. All rights
+		reserved.</div>
+	<script type="text/javascript">
+   		var url = "api/user/searchPersonal";
+   		var token=getToken();
+   		var bearer = "Bearer "+token;
+   	    var saints = {
+   	   	    	0: ["身分證字號"],
+   	   	    	1: ["姓名"],
+   	   	    	2: ["生日"],
+   	   	    	3: ["電話"],
+   	   	    	4: ["意願登記廠牌"],
+   	   	    	5: ["偏好施打地區"],
+   	   	    	6: ["意願登記日期"]
+   	   	    };
+   		params = {token: token};
+   	    $.ajax({
+   			type: "POST",
+   			url: url,
+   			data: params,
+   			beforeSend: function(request){
+   				request.setRequestHeader("Authorization", bearer);
+   			},
+   			success: function(respone) {
+				add(respone, saints);
+            },
+   			error: function(){
+   				alert("閒置過久，系統已自動登出，請重新登入");
+   				window.location.href="index";
+   			}
+   		});
+    </script>
+</body>
+</html>

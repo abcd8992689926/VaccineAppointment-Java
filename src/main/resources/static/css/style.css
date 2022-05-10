@@ -1,0 +1,131 @@
+body{
+    font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
+    margin: 0 0 0 0;
+}
+.btn{
+    width: 500px;
+    height: 500px;
+    line-height: 500px;
+    font-size: 80pt;
+    border-radius:30px;
+    user-select:none;
+    float: left;
+    text-align: center;
+}
+#log_background{
+    width: 400pt;
+    height: 300pt;
+    background-color: #DFDCD7;
+    border-radius:30px;
+    position: absolute;
+    top: 19%;
+    left: 36%;
+}
+#content{
+    color: black;
+    font-size: 20pt;
+    user-select:none;
+}
+#id_input{
+    font-size: 19pt;
+    border-style:none none solid none;
+    background-color:transparent;
+    position: relative;
+    left: 30pt;
+    font-weight: bold;
+}
+.NHI_id_input{
+    font-size: 19pt;
+    border-style:none none solid none;
+    background-color:transparent;
+    margin-left: 30pt;
+    font-weight: bold;
+}
+#id_input:focus{
+    outline: none;
+    border: 3px solid rgb(134, 148, 161);
+}
+.NHI_id_input:focus{
+    outline: none;
+    border: 3px solid rgb(134, 148, 161);
+}
+#btn_box{
+    width: 200px;
+    height: 50px;
+    border-radius:10px;
+    margin: auto;
+    position: relative;
+    top: 40pt;
+    background: white;
+    font-size: 22px;
+    text-align: center;
+    line-height: 50px;
+    border:2pt black solid;
+}
+#btn_box a{
+    display: block;
+}
+#btn_box:hover{
+    background-color: #D2D2D0;
+}
+#btn_box a:link{
+    text-decoration:none;
+    color: black;
+}
+#btn_box a:hover{
+    color: black;
+}
+a:visited{
+    color: black;
+}
+#title{
+	text-align: center;
+	font-size: 29pt;
+	margin-bottom: 14;
+	font-weight: bold;
+}
+#footer{
+	width: 100%;
+	text-align: center;
+    position: relative;
+    bottom: 0;
+    line-height: 25pt;
+    border-top:1px solid #9A9A9A;
+}
+#title2{
+	margin-top: 14;
+	margin-bottom: 14;
+	text-align: center;
+	font-size: 15pt;
+}
+#main{
+	height: 95.5%;
+}
+#container{
+	position: relative;
+	min-height: calc(100% - 26pt);
+	display:none;
+}
+#page{
+	position: relative;
+	min-height: calc(100% - 26pt);
+}
+.choiceBtn{
+	background-color:  #DFDCD7;
+	width: 300px;
+	border-radius: 9px;
+	margin:20px 0 0 30px;
+	float: left;
+	text-align: center;
+	line-height: 110px;
+	font-size: 25pt;
+	border:5px solid #D2D2D0;
+}
+.choiceBtn:hover{
+	transform: scale(1.1);
+	transition: .6s;
+	border:3px solid black;
+}
+a{
+	color: black;
+}

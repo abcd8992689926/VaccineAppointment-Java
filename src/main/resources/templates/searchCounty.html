@@ -1,0 +1,170 @@
+<html>
+<head>
+<title>查詢</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/menu.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/echarts.js"></script>
+<script src="js/people.js"></script>
+<script>
+	verifyLogin(getToken());
+</script>
+<style>
+    #btn_box{
+      margin-top: -15px;
+    }
+    #twCounty{ 
+    	font-size:22pt;
+        border-radius:12px;
+        width:95pt;
+        text-align:center;
+        margin:20 0 0 151pt;
+    }
+    #log_background{
+    	height:202pt;
+    }
+</style>
+</head>
+<body>
+        <input type="checkbox" id="navbarToggle">
+        <header class="main-header">
+          <div class="containerM">
+            <nav>
+              <ul class="main-menu">
+                <li id="firstLi"><a href="choice">首頁</a></li>
+                <li><a href="search">查詢</a></li>
+                <li><a href="informationSheet">接種須知</a></li>
+                <li><a href="simulation">模擬資料</a></li>
+                <li><a href="javascript:void(0)" onclick=logout()>登出</a></li>
+              </ul>
+            </nav>
+            <label for="navbarToggle" class="navbarToggle">
+                <span id="icon" class="entypo-down-open"></span>
+                <span id="icon" class="entypo-up-open"></span>
+            </label>
+          </div>
+        </header>
+		<div id="container"></div>
+		<div id="page">
+	        <div id="log_background">
+            <div id="content">
+	            <p id="title">查詢</p>
+	            <p id="title2">選擇您欲查詢城市</p>
+                <select id="twCounty">
+				    <option value="0">臺北市</option>
+				    <option value="1">臺中市</option>
+				    <option value="2">基隆市</option>
+				    <option value="3">臺南市</option>
+				    <option value="4">高雄市</option>
+				    <option value="5">新北市</option>
+				    <option value="6">宜蘭縣</option>
+				    <option value="7">桃園縣</option>
+				    <option value="8">新竹縣</option>
+				    <option value="9">苗栗縣</option>
+				    <option value="10">臺中縣</option>
+				    <option value="11">南投縣</option>
+				    <option value="12">彰化縣</option>
+				    <option value="13">雲林縣</option>
+				    <option value="14">嘉義縣</option>
+				    <option value="15">臺南縣</option>
+				    <option value="16">高雄縣</option>
+				    <option value="17">屏東縣</option>
+				    <option value="18">花蓮縣</option>
+				    <option value="19">臺東縣</option>
+				    <option value="20">澎湖縣</option>
+				    <option value="22">金門縣</option>
+				    <option value="23">連江縣</option>
+				    <option value="24">嘉義市</option>
+				    <option value="25">新竹市</option>
+				</select>
+				<div id="btn_box"><a href="javascript:void(0)" onclick=searchCounty()>查詢</a></div>
+            </div>
+        </div>
+        </div>
+        <div id="footer">Copyright © 2022 LAI,MU-WEI. All rights reserved.</div>
+    <script type="text/javascript">
+    	function searchCounty(){
+    		var url = "api/user/searchCounty";
+    		var bearer = "Bearer "+getToken();
+    		let county=$('#twCounty').val();
+    		params = {county: county};
+    	    $.ajax({
+    			type: "POST",
+    			url: url,
+    			data: params,
+    			beforeSend: function(request){
+    				request.setRequestHeader("Authorization", bearer);
+    			},
+    			success: function(respone) {
+        			$("#container").show();
+        			respone[county]={value: respone[county], itemStyle: {color: '#a90000'}};
+        	    	//繪圖
+        	    	var dom = document.getElementById("container");
+        			var myChart = echarts.init(dom);
+        			var app = {};
+        			var option;
+        			option = { 
+    				  tooltip: {
+    				    trigger: 'axis',
+    				    //formatter: '{b}\n{c}',
+    				    axisPointer: {
+    				      type: 'shadow'
+    				    }
+    				  },
+        			  xAxis: {
+        			    type: 'category',
+        			    data: ['臺北市', '臺中市', '基隆市', '臺南市', '高雄市', '新北市', '宜蘭縣', '桃園縣', '新竹縣', '苗栗縣', '臺中縣', '南投縣', '彰化縣', '雲林縣', '嘉義縣', '臺南縣', '高雄縣', '屏東縣', '花蓮縣', '臺東縣', '澎湖縣', '金門縣', '連江縣', '嘉義市', '新竹市' ],
+    	   			    axisTick: {
+       			          alignWithLabel: true
+       			        }
+        			  },
+        			  yAxis: {
+        			    type: 'value'
+        			  },
+        			  series: [
+        			    {
+        			      data: [
+        			        respone[0],
+        			        respone[1],
+        			        respone[2],
+        			        respone[3],
+        			        respone[4],
+        			        respone[5],
+        			        respone[6],
+        			        respone[7],
+        			        respone[8],
+        			        respone[9],
+        			        respone[10],
+        			        respone[11],
+        			        respone[12],
+        			        respone[13],
+        			        respone[14],
+        			        respone[15],
+        			        respone[16],
+        			        respone[17],
+        			        respone[18],
+        			        respone[19],
+        			        respone[20],
+        			        respone[22],
+        			        respone[23],
+        			        respone[24],
+        			        respone[25]
+        			      ],
+        			      type: 'bar'
+        			    }
+        			  ]
+        			};
+        			if (option && typeof option === 'object') {
+        			    myChart.setOption(option);
+        			}
+        			$("#page").hide();
+    			},
+    			error: function(){
+    				alert("閒置過久，系統已自動登出，請重新登入");
+    				window.location.href="index";
+    			}
+    		});
+    	}
+    </script>
+</body>
+</html>
