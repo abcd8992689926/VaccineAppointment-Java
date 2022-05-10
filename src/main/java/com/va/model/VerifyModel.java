@@ -22,7 +22,6 @@ public class VerifyModel {
 		*/
 		String result="9999";
 		int count=userrepository.getIdCount(id);
-		System.out.print(count);
 		if(count!=0){
 			String oNHI=userrepository.getNHI(id);
 			if(NHI.equals(oNHI)) {

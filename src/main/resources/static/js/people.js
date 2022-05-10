@@ -9,7 +9,7 @@ function sendForm() {
     params = {id: id, NHI: NHI};
     $.post(url, params, function(respone){
         if (respone=="0001"||respone=="0002"||respone=="9999"){
-            alert("輸入的資料有誤，請重新輸入");
+            alert("2輸入的資料有誤，請重新輸入");
             $('#id_input').val('');
             $('.NHI_id_input').val(''); 
         }else{
@@ -17,7 +17,7 @@ function sendForm() {
             window.location.href="choice";
         } 
     }).fail(function(){
-        alert("輸入的資料有誤，請重新輸入");
+        alert("1輸入的資料有誤，請重新輸入");
         $('#id_input').val('');
         $('.NHI_id_input').val('');
     });

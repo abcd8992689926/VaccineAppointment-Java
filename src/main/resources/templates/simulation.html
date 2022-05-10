@@ -10647,6 +10647,8 @@ offshoreIslands=$("#offshoreIslands").slider("option", "value");
     FDMVC17: FDMVC[17], FDMVC18: FDMVC[18], FDMVC19: FDMVC[19], FDMVC20: FDMVC[20], FDMVC21: FDMVC[21], FDMVC22: FDMVC[22], FDMVC23: FDMVC[23], FDMVC24: FDMVC[24], FDMVC25: FDMVC[25], ZDLength: ZDLength, FDLength: FDLength
     };
     params = JSON.stringify(params);
+	alert("資料產生中，將您返回首頁");
+	window.location.href="choice";
     $.ajax({
       url: url,
       data: params,
@@ -10654,8 +10656,6 @@ offshoreIslands=$("#offshoreIslands").slider("option", "value");
       contentType: "application/json",
       dataType: "json",
       success: function(data) {
-		alert("資料產生中，將您返回首頁");
-		window.location.href="choice";
       }
     });
   }
