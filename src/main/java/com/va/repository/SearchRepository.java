@@ -94,9 +94,9 @@ public class SearchRepository {
 			record[pointer][1]=(String)result.get("name");
 			record[pointer][2]=result.get("vaccinated_dose")+"";
 			record[pointer][3]=result.get("manufacturer_ID")+"";
-			record[pointer][4]=result.get("vaccinated_date")+"";
-			record[pointer][5]=(String)result.get("HOSP_name");
-			record[pointer][6]=(String)result.get("address");
+			record[pointer][4]=(String)result.get("HOSP_name");
+			record[pointer][5]=(String)result.get("address");
+			record[pointer][6]=result.get("vaccinated_date")+"";
 			pointer++;
 		}
 		return record;
