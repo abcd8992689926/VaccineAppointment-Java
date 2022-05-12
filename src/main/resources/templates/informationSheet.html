@@ -1,54 +1,131 @@
 <html>
-	<head>
-		<title>疫苗預約平台</title>
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/menu.css">
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script type="text/javascript" src="js/people.js"></script>
-		<script>
+<head>
+<title>疫苗預約平台</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/menu.css">
+<link rel="shortcut icon" href="images/favicon.ico"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="js/people.js"></script>
+<script>
 			verifyLogin(getToken());
 		</script>
-		<style>
-			#page{
-				display: flex;
-				justify-content: center;    
-				align-content: center;      
-				flex-wrap: wrap;
-			}
-			.main-header{
-				width: 414px;
-				left: calc(calc(100% - 414px)/2);
-			}
-			.choiceBtn{
-				width: 394px;
-				margin: 0 15 0 15;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="page">
-			<input type="checkbox" id="navbarToggle">
-	        <header class="main-header">
-	          <div class="containerM">
-	            <nav>
-	              <ul class="main-menu">
-                    <li id="firstLi"><a href="choice">首頁</a></li>
-	                <li><a href="search">查詢</a></li>
-	                <li><a href="simulation">模擬資料</a></li>
-	                <li><a href="javascript:void(0)" onclick=logout()>登出</a></li>
-	              </ul>
-	            </nav>
-	            <label for="navbarToggle" class="navbarToggle">
-	                <span id="icon" class="entypo-down-open"></span>
-	                <span id="icon" class="entypo-up-open"></span>
-	            </label>
-	          </div>
-	        </header>
-				<a href="https://www.cdc.gov.tw/File/Get/6nMbNejvp44a7RYU2nq0rw" target="_blank" title="Moderna COVID-19 疫苗接種須知"><div class="choiceBtn">Moderna</div></a>
-				<a href="https://www.cdc.gov.tw/File/Get/rj530AJTe4wWbKNVjY1tTA" target="_blank" title="BioNTech COVID-19 疫苗接種須知"><div class="choiceBtn">BioNTech</div></a>
-				<a href="https://www.cdc.gov.tw/File/Get/_uTKYGLMyQeaEG-fQ9pjnw" target="_blank" title="AstraZeneca COVID-19 疫苗接種須知"><div class="choiceBtn">AstraZeneca</div></a>
-				<a href="https://www.cdc.gov.tw/File/Get/7O6rpBKfhZCskmmS4iSOTw" target="_blank" title="MVC COVID-19 疫苗接種須知"><div class="choiceBtn" id="MVC">MVC COVID-19 Vaccine</div></a>
+<style>
+#page {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-wrap: wrap;
+	text-align: center;
+}
+
+.main-header {
+	width: 414px;
+	left: calc(calc(100% - 414px)/2);
+}
+
+.choiceBtn {
+	width: 394px;
+	margin: 0 15 0 15;
+}
+
+#vaccineImg {
+	display: block;
+	opacity: 0.6;
+}
+
+.col {
+	flex: 0 0 30%;
+	margin: 0 30 0 30;
+}
+
+.col a {
+	display: block;
+	border: 1px solid #e5e5e5;
+	border-radius: 8px;
+}
+
+.preview {
+	display: block;
+	width: 100%;
+	height: 0;
+	padding-bottom: 100%;
+	background-position: top center;
+	background-size: 100%;
+	transition: background-position 6s ease-in-out, box-shadow 3s ease;
+}
+
+.preview:hover {
+	background-position: bottom center;
+	box-shadow: inset 0 20px 20px rgba(0, 0, 0, 0.2);
+	transform: scale(1.3);
+	border:3px solid black;
+}
+.row{
+    display: flex;
+    justify-content: space-around;
+    margin: 16px auto;
+	width: 1320px;
+	font-size: 25pt;
+}
+#icon{
+	left:1px;
+}
+.col p{
+	border:3px solid #68A7AD;
+	background: #99C4C8;
+	border-radius: 9px;
+	line-height: 60px;
+}
+</style>
+</head>
+<body>
+	<div id="page">
+		<input type="checkbox" id="navbarToggle">
+		<header class="main-header">
+			<div class="containerM">
+				<nav>
+					<ul class="main-menu">
+						<li id="firstLi"><a href="choice">首頁</a></li>
+						<li><a href="search">查詢</a></li>
+						<li><a href="simulation">模擬資料</a></li>
+						<li><a href="javascript:void(0)" onclick=logout()>登出</a></li>
+					</ul>
+				</nav>
+				<label for="navbarToggle" class="navbarToggle"> <span
+					id="icon" class="entypo-down-open"></span> <span id="icon"
+					class="entypo-up-open"></span>
+				</label>
+			</div>
+		</header>
+		<div class="row">
+			<div class="col">
+				<p>Moderna</p>
+				<a href="https://www.cdc.gov.tw/File/Get/6nMbNejvp44a7RYU2nq0rw"
+					target="_blank" class="preview"
+					style="background-image: url('images/Moderna.jpg')"></a>
+			</div>
+			<div class="col">
+				<p>BioNTech</p>
+				<a href="https://www.cdc.gov.tw/File/Get/rj530AJTe4wWbKNVjY1tTA"
+					target="_blank" class="preview"
+					style="background-image: url('images/BioNTech.jpg')"></a>
+			</div>
+			<div class="col">
+				<p>AstraZeneca</p>
+				<a href="https://www.cdc.gov.tw/File/Get/_uTKYGLMyQeaEG-fQ9pjnw"
+					target="_blank" class="preview"
+					style="background-image: url('images/AstraZeneca.jpg')"></a>
+			</div>
+			<div class="col">
+				<p>MVC COVID-19 Vaccine</p>
+				<a href="https://www.cdc.gov.tw/File/Get/7O6rpBKfhZCskmmS4iSOTw"
+					target="_blank" class="preview"
+					style="background-image: url('images/MVC.jpg')"></a>
+			</div>
 		</div>
-		<div id="footer">Copyright © 2022 LAI,MU-WEI. All rights reserved.</div>
-	</body>
+	</div>
+	<div class="bg"><img src="images/vaccine.jpg" id="vaccineImg"></div>
+	<div id="footer">Copyright © 2022 LAI,MU-WEI. All rights
+		reserved.</div>
+</body>
 </html>

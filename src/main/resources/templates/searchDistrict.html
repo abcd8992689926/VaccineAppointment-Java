@@ -3,6 +3,7 @@
 <title>查詢</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/menu.css">
+<link rel="shortcut icon" href="images/favicon.ico"/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/echarts.js"></script>
 <script src="js/people.js"></script>
@@ -101,6 +102,7 @@
             </div>
         </div>
 		</div>
+		<div class="bg"><img src="images/search.jpg" id="searchImg"></div>
         <div id="footer">Copyright © 2022 LAI,MU-WEI. All rights reserved.</div>
     <script type="text/javascript">
 	    var saints = {
@@ -151,6 +153,7 @@
     	    });
     	});
     	function searchDistrict(){
+    		$("#searchImg").hide();
     		var url = "api/user/searchDistrict";
     		var bearer = "Bearer "+getToken();
     		let county=$('#twCounty').val();

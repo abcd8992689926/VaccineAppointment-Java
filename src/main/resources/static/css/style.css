@@ -1,6 +1,7 @@
 body{
     font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
     margin: 0 0 0 0;
+    user-select:none;
 }
 .btn{
     width: 500px;
@@ -15,7 +16,7 @@ body{
 #log_background{
     width: 400pt;
     height: 300pt;
-    background-color: #DFDCD7;
+    background: rgba(255, 255, 255, 0.6);
     border-radius:30px;
     position: absolute;
     top: 19%;
@@ -91,6 +92,7 @@ a:visited{
     bottom: 0;
     line-height: 25pt;
     border-top:1px solid #9A9A9A;
+    background: rgba(255, 255, 255, 0.8);
 }
 #title2{
 	margin-top: 14;
@@ -111,7 +113,7 @@ a:visited{
 	min-height: calc(100% - 26pt);
 }
 .choiceBtn{
-	background-color:  #DFDCD7;
+	background-color: #99C4C8;
 	width: 300px;
 	border-radius: 9px;
 	margin:20px 0 0 30px;
@@ -119,7 +121,7 @@ a:visited{
 	text-align: center;
 	line-height: 110px;
 	font-size: 25pt;
-	border:5px solid #D2D2D0;
+	border:3px solid #68A7AD;
 }
 .choiceBtn:hover{
 	transform: scale(1.1);
@@ -128,4 +130,26 @@ a:visited{
 }
 a{
 	color: black;
+}
+.bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: -999;
+}
+.bg img {
+	min-height: 100%;
+	width: 100%;
+	position:absolute;
+	-webkit-transition: opacity .8s ease-in-out;
+	-moz-transition: opacity .8s ease-in-out;
+	-o-transition: opacity .8s ease-in-out;
+	transition: opacity .8s ease-in-out;
+	display: none;
+}
+#searchImg{
+	display: block;
+	opacity: 0.6;
 }

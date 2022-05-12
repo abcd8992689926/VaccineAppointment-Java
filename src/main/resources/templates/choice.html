@@ -1,59 +1,126 @@
 <html>
-	<head>
-		<title>疫苗預約平台</title>
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/menu.css">
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script type="text/javascript" src="js/people.js"></script>
-		<script>
-			verifyLogin(getToken());
-		</script>
-		<style>
-			#page{
-				display: flex;
-				justify-content: center;
-				align-content: center;
-				flex-wrap: wrap;
-			}
-			.choiceBtn{
-				margin: 0 15 0 15;
-			}
-			#left_btn_a{
-				display:none;
-			}
-		    .main-header {
-				width: 472px;
-				left: calc(calc(100% - 472px)/2);
-			}
-		</style>
-	</head>
-	<body>
-		<div id="page">
-			<input type="checkbox" id="navbarToggle">
-	        <header class="main-header">
-	          <div class="containerM">
-	            <nav>
-	              <ul class="main-menu">
-	                <li id="firstLi"><a href="search">查詢</a></li>
-	                <li><a href="informationSheet">接種須知</a></li>
-	                <li><a href="simulation">模擬資料</a></li>
-	                <li><a href="javascript:void(0)" onclick=logout()>登出</a></li>
-	              </ul>
-	            </nav>
-	            <label for="navbarToggle" class="navbarToggle">
-	                <span id="icon" class="entypo-down-open"></span>
-	                <span id="icon" class="entypo-up-open"></span>
-	            </label>
-	          </div>
-	        </header>
-			<a href="register" id="left_btn_a" title="意願登記"><div class="choiceBtn" id="left_btn">意願登記</div></a>
-			<a href="search" title="查詢"><div class="choiceBtn">查詢</div></a>
-			<a href="informationSheet" title="接種須知"><div class="choiceBtn">接種須知</div></a>
-			<a href="simulation" title="模擬資料產生"><div class="choiceBtn">模擬資料</div></a>
-		</div>
-		<div id="footer">Copyright © 2022 LAI,MU-WEI. All rights reserved.</div>
-	</body>
+<head>
+<title>疫苗預約平台</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/menu.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="js/people.js"></script>
+<link rel="shortcut icon" href="images/favicon.ico"/>
+<script>
+	verifyLogin(getToken());
+</script>
+<style>
+#page {
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+	flex-wrap: wrap;
+}
+
+.choiceBtn {
+	margin: 0 15 0 15;
+}
+#register {
+	display: none;
+}
+
+.main-header {
+	width: 472px;
+	left: calc(calc(100% - 472px)/2);
+}
+#backgroundImg{
+	display: block;
+}
+</style>
+</head>
+<body>
+	<div id="page">
+		<input type="checkbox" id="navbarToggle">
+		<header class="main-header">
+			<div class="containerM">
+				<nav>
+					<ul class="main-menu">
+						<li id="firstLi"><a href="search">查詢</a></li>
+						<li><a href="informationSheet">接種須知</a></li>
+						<li><a href="simulation">模擬資料</a></li>
+						<li><a href="javascript:void(0)" onclick=logout()>登出</a></li>
+					</ul>
+				</nav>
+				<label for="navbarToggle" class="navbarToggle"> <span
+					id="icon" class="entypo-down-open"></span> <span id="icon"
+					class="entypo-up-open"></span>
+				</label>
+			</div>
+		</header>
+			<a href="register" id="register" title="意願登記"><div class="choiceBtn" id="left_btn">意願登記</div></a> 
+			<a href="search" title="查詢" id="search"><div class="choiceBtn">查詢</div></a>
+			<a href="informationSheet" title="接種須知" id="informationSheet"><div class="choiceBtn">接種須知</div></a>
+			<a href="simulation" title="模擬資料產生" id="simulation"><div class="choiceBtn">模擬資料</div></a>
+			<div class="bg">
+				<img src="images/simulation.jpg" id="simulationImg">
+				<img src="images/vaccine.jpg" id="informationSheetImg">
+				<img src="images/search.jpg" id="searchImg">
+				<img src="images/background.png" id="backgroundImg">
+			</div>
+	</div>
+	<div id="footer">Copyright © 2022 LAI,MU-WEI. All rights
+		reserved.</div>
+</body>
 	<script type="text/javascript">
 		register=getRegistered(getToken());
+		$( function() {
+			var div = document.querySelector("#informationSheet");
+			div.addEventListener("mousemove", touch, false);
+			div.addEventListener("mouseout", leave, false);
+			function touch() {
+				$("#simulationImg").hide();
+				$("#searchImg").hide();
+			  $("#informationSheetImg").show();
+			  $("#search").css("opacity","0.2");
+			  $("#simulation").css("opacity","0.2");
+			  $("#backgroundImg").css("opacity","0");
+			}
+			function leave() {
+			  $("#search").css("opacity","");
+			  $("#simulation").css("opacity","");
+			  $("#backgroundImg").css("opacity","");
+			}
+		});
+		$( function() {
+			var div = document.querySelector("#search");
+			div.addEventListener("mousemove", touch, false);
+			div.addEventListener("mouseout", leave, false);
+			function touch() {
+				$("#simulationImg").hide();
+				$("#informationSheetImg").hide();
+			  $("#searchImg").show();
+			  $("#informationSheet").css("opacity","0.2");
+			  $("#simulation").css("opacity","0.2");
+			  $("#backgroundImg").css("opacity","0");
+			}
+			function leave() {
+			  $("#informationSheet").css("opacity","");
+			  $("#simulation").css("opacity","");
+			  $("#backgroundImg").css("opacity","");
+			}
+		});
+		$( function() {
+			var div = document.querySelector("#simulation");
+			div.addEventListener("mousemove", touch, false);
+			div.addEventListener("mouseout", leave, false);
+			function touch() {
+				$("#searchImg").hide();
+				$("#informationSheetImg").hide();
+			  $("#simulationImg").show();
+			  $("#search").css("opacity","0.2");
+			  $("#informationSheet").css("opacity","0.2");
+			  $("#backgroundImg").css("opacity","0");
+			}
+			function leave() {
+			  $("#backgroundImg").css("opacity","");
+			  $("#search").css("opacity","");
+			  $("#informationSheet").css("opacity","");
+			}
+		});
 	</script>
 </html>

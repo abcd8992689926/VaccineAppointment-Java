@@ -7,6 +7,7 @@
 	href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.min.css">
 <link rel="stylesheet" href="css/switch.css">
 <link rel="stylesheet" href="css/menu.css">
+<link rel="shortcut icon" href="images/favicon.ico"/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
 <style>
@@ -52,6 +53,7 @@
 #log_background {
 	height: 404pt;
 	top: calc(calc(90% - 404pt -25px)/2);
+	background: rgba(255, 255, 255, 0.8);
 }
 
 a {
@@ -285,6 +287,10 @@ input[type="checkbox"] {
 .main-header{
 	width: 414px;
 	left: calc(calc(100% - 414px)/2);
+}
+#searchImg{
+	display: block;
+	opacity: 0.6;
 }
 </style>
 <script>  
@@ -11958,6 +11964,7 @@ offshoreIslands=$("#offshoreIslands").slider("option", "value");
 			</div>
 		</div>
 	</div>
+	<div class="bg"><img src="images/simulation.jpg" id="searchImg"></div>
 	<div id="footer">Copyright © 2022 LAI,MU-WEI. All rights
 		reserved.</div>
 </body>

@@ -12,12 +12,6 @@ public class SpringBoot {
 		// TODO Auto-generated method stub
 
 	}
-	
-	@GetMapping("/x")
-	public String hello(){
-		return "Hey, Spring Boot 的 Hello World !";
-	}
-	
 	@GetMapping("/index")
 	public String index(){
 		return "index";

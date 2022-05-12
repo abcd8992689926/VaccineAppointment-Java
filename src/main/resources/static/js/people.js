@@ -9,7 +9,7 @@ function sendForm() {
     params = {id: id, NHI: NHI};
     $.post(url, params, function(respone){
         if (respone=="0001"||respone=="0002"||respone=="9999"){
-            alert("2輸入的資料有誤，請重新輸入");
+            alert("輸入的資料有誤，請重新輸入");
             $('#id_input').val('');
             $('.NHI_id_input').val(''); 
         }else{
@@ -17,7 +17,7 @@ function sendForm() {
             window.location.href="choice";
         } 
     }).fail(function(){
-        alert("1輸入的資料有誤，請重新輸入");
+        alert("輸入的資料有誤，請重新輸入");
         $('#id_input').val('');
         $('.NHI_id_input').val('');
     });
@@ -63,7 +63,7 @@ function appointment() {
 //判定為意願登記或預約
 function verifyChoice(register){
     if (!register){
-        $("#left_btn_a").show();
+        $("#register").show();
     }
 }
 //確認是否登入
