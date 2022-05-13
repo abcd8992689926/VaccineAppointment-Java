@@ -57,6 +57,7 @@
 			<a href="informationSheet" title="接種須知" id="informationSheet"><div class="choiceBtn">接種須知</div></a>
 			<a href="simulation" title="模擬資料產生" id="simulation"><div class="choiceBtn">模擬資料</div></a>
 			<div class="bg">
+				<img src="images/register.jpg" id="registerImg">
 				<img src="images/simulation.jpg" id="simulationImg">
 				<img src="images/vaccine.jpg" id="informationSheetImg">
 				<img src="images/search.jpg" id="searchImg">
@@ -73,14 +74,17 @@
 			div.addEventListener("mousemove", touch, false);
 			div.addEventListener("mouseout", leave, false);
 			function touch() {
+				$("#registerImg").hide();
 				$("#simulationImg").hide();
 				$("#searchImg").hide();
 			  $("#informationSheetImg").show();
 			  $("#search").css("opacity","0.2");
 			  $("#simulation").css("opacity","0.2");
+			  $("#register").css("opacity","0.2");
 			  $("#backgroundImg").css("opacity","0");
 			}
 			function leave() {
+				$("#register").css("opacity","");
 			  $("#search").css("opacity","");
 			  $("#simulation").css("opacity","");
 			  $("#backgroundImg").css("opacity","");
@@ -91,14 +95,17 @@
 			div.addEventListener("mousemove", touch, false);
 			div.addEventListener("mouseout", leave, false);
 			function touch() {
+				$("#registerImg").hide();
 				$("#simulationImg").hide();
 				$("#informationSheetImg").hide();
 			  $("#searchImg").show();
 			  $("#informationSheet").css("opacity","0.2");
 			  $("#simulation").css("opacity","0.2");
+			  $("#register").css("opacity","0.2");
 			  $("#backgroundImg").css("opacity","0");
 			}
 			function leave() {
+				$("#register").css("opacity","");
 			  $("#informationSheet").css("opacity","");
 			  $("#simulation").css("opacity","");
 			  $("#backgroundImg").css("opacity","");
@@ -109,17 +116,41 @@
 			div.addEventListener("mousemove", touch, false);
 			div.addEventListener("mouseout", leave, false);
 			function touch() {
+				$("#registerImg").hide();
 				$("#searchImg").hide();
 				$("#informationSheetImg").hide();
 			  $("#simulationImg").show();
 			  $("#search").css("opacity","0.2");
 			  $("#informationSheet").css("opacity","0.2");
+			  $("#register").css("opacity","0.2");
 			  $("#backgroundImg").css("opacity","0");
 			}
 			function leave() {
+				$("#register").css("opacity","");
 			  $("#backgroundImg").css("opacity","");
 			  $("#search").css("opacity","");
 			  $("#informationSheet").css("opacity","");
+			}
+		});
+		$( function() {
+			var div = document.querySelector("#register");
+			div.addEventListener("mousemove", touch, false);
+			div.addEventListener("mouseout", leave, false);
+			function touch() {
+				$("#informationSheetImg").hide();
+				$("#simulationImg").hide();
+				$("#searchImg").hide();
+			  $("#registerImg").show();
+			  $("#search").css("opacity","0.2");
+			  $("#simulation").css("opacity","0.2");
+			  $("#informationSheet").css("opacity","0.2");
+			  $("#backgroundImg").css("opacity","0");
+			}
+			function leave() {
+			  $("#search").css("opacity","");
+			  $("#simulation").css("opacity","");
+			  $("#informationSheet").css("opacity","");
+			  $("#backgroundImg").css("opacity","");
 			}
 		});
 	</script>

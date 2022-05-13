@@ -44,25 +44,10 @@ function logout() {
 	sessionStorage.removeItem("jwt");
     window.location.href="index";
 }
-//轉址至register
-/*function register() {
-    window.location.href = "register.php";
-}*/
-//轉址至appointment
-function appointment() {
-    var url = "qualification_check.php";
-    $.post( url, function ( data ) {
-        if (data=="verify"){
-            window.location.href='appointment.php';
-        }
-        else{
-            alert("您不符合本輪預約資格");
-        }
-    });
-}
 //判定為意願登記或預約
 function verifyChoice(register){
     if (!register){
+		$("#backgroundImg").attr("src","images/background2.png");
         $("#register").show();
     }
 }
