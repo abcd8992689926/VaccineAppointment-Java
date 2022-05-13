@@ -9,3 +9,6 @@ table {
     font-size:22pt;
     background:rgba(223, 220, 215, 0.8);
 }
+.dark{
+	background:rgba(236, 232, 221, 0.6);
+}

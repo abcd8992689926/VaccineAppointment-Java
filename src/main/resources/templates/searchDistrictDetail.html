@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>查詢</title>
+<title>疫苗預約平台</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/menu.css">
 <link rel="stylesheet" href="css/zip.css">
@@ -179,11 +179,14 @@
         	    	let address=new Array(respone.length);
         	    	let dose=new Array(respone.length);
         	    	for(i=0; i<respone.length; i++){
-        	    		add(respone[i][0], respone[i][1], respone[i][2]);
+        	    		if(i%2==0){
+        	    			add(respone[i][0], respone[i][1], respone[i][2], true);
+        	    		}else{
+        	    			add(respone[i][0], respone[i][1], respone[i][2], false);
+        	    		}
         	    	}
         	    	tableHeight=$("#data").height();
         	    	if($("#page").height()!=tableHeight+2){
-        	    		console.log();
         	    		$("#data").css("position","absolute");
         	    		$("#data").css("top",(window.screen.height-tableHeight-150)/2);
         	    	}
@@ -194,9 +197,10 @@
     			}
     		});
     	}
-    	function add(name, address, dose){
+    	function add(name, address, dose, even){
             let table = document.getElementById("data");
             let newRow = table.insertRow();
+            if(even) newRow.className="dark";
             let cellName = newRow.insertCell();
             let cellAddress = newRow.insertCell();
             let cellDose = newRow.insertCell();

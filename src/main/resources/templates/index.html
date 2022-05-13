@@ -12,6 +12,36 @@
 	#log_background{
 		background-color: #DFDCD7;
 	}
+	#loginImg {
+		display: block;
+		opacity: 0.6;
+	}
+	#log_background {
+		background: rgba(0, 0, 0, 0.3);
+	}
+	::placeholder {
+		color: white;
+		font-weight: normal;
+	}
+	input{
+		border-color: white;
+		color: white;
+	}
+	#content{
+		color: white;
+	}
+	#id_input:focus{
+	    border: 1px solid black;
+	}
+	.NHI_id_input:focus{
+	    border: 1px solid black;
+	}
+	#btn_box{
+		top: 61px;
+	} 
+	#btn_box:hover{
+	    background-color: white;
+	}
 </style>
 </head>
 <body>
@@ -33,6 +63,7 @@
             </div>
         </div>
     </div>
+    <div class="bg"><img src="images/login.jpg" id="loginImg"></div>
     <div id="footer">Copyright © 2022 LAI,MU-WEI. All rights reserved.</div>
 </body>
 <script src="js/login.js"></script>
