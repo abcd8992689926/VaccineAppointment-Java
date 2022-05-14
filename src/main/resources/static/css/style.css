@@ -113,7 +113,7 @@ a:visited{
 	min-height: calc(100% - 26pt);
 }
 .choiceBtn{
-	background-color: #99C4C8;
+	background-color: rgba(255, 255, 255, 0.7);
 	width: 300px;
 	border-radius: 9px;
 	margin:20px 0 0 30px;
@@ -121,7 +121,7 @@ a:visited{
 	text-align: center;
 	line-height: 110px;
 	font-size: 25pt;
-	border:3px solid #68A7AD;
+	border:3px solid white;
 }
 .choiceBtn:hover{
 	transform: scale(1.1);

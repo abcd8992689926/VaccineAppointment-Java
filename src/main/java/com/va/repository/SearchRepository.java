@@ -35,26 +35,26 @@ public class SearchRepository {
 		return sum;
 	}
 	public String[][] getNAD(int zipCode) {
-		sql="select HOSP_name,address,dose from hosp_detail as a LEFT OUTER JOIN hosp_dose as b on a.level=b.level where zip_code="+zipCode+";";
+		sql="select HOSP_name,Area_code,phone_num,dose from hosp_detail as a LEFT OUTER JOIN hosp_dose as b on a.level=b.level where zip_code="+zipCode+";";
 		List<Map<String, Object>> results = (List<Map<String, Object>>)jdbcTemplate.queryForList(sql);
 		String NAD[][]=new String[results.size()][3];
 		int point=0;
 		for(Map<String, Object> result : results) {
 			NAD[point][0]=(String)result.get("HOSP_name");
-			NAD[point][1]=(String)result.get("address");
+			NAD[point][1]="（0"+(String)result.get("Area_code")+"）"+(String)result.get("phone_num");
 			NAD[point][2]=result.get("dose")+"";
 			point++;
 		}
 		return NAD;
 	}
 	public String[][] getNAD(String zipCode) {
-		sql="select HOSP_name,address,dose from hosp_detail as a LEFT OUTER JOIN hosp_dose as b on a.level=b.level where address like '%"+zipCode+"%';";
+		sql="select HOSP_name,phone_num,dose from hosp_detail as a LEFT OUTER JOIN hosp_dose as b on a.level=b.level where address like '%"+zipCode+"%';";
 		List<Map<String, Object>> results = (List<Map<String, Object>>)jdbcTemplate.queryForList(sql);
 		String NAD[][]=new String[results.size()][3];
 		int pointer=0;
 		for(Map<String, Object> result : results) {
 			NAD[pointer][0]=(String)result.get("HOSP_name");
-			NAD[pointer][1]=(String)result.get("address");
+			NAD[pointer][1]=(String)result.get("phone_num");
 			NAD[pointer][2]=result.get("dose")+"";
 			pointer++;
 		}

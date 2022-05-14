@@ -31,6 +31,22 @@
 #backgroundImg{
 	display: block;
 }
+#informationSheetBtn{
+	background-color: rgba(0, 0, 0, 0.7);
+	border: 3px solid black;
+	color: white;
+}
+#informationSheetBtn:hover{
+	border: 3px solid white;
+}
+#registerBtn{
+	background-color: rgba(0, 0, 0, 0.7);
+	border: 3px solid black;
+	color: white;
+}
+#registerBtn:hover{
+	border: 3px solid white;
+}
 </style>
 </head>
 <body>
@@ -52,9 +68,9 @@
 				</label>
 			</div>
 		</header>
-			<a href="register" id="register" title="意願登記"><div class="choiceBtn" id="left_btn">意願登記</div></a> 
+			<a href="register" id="register" title="意願登記"><div class="choiceBtn" id="registerBtn">意願登記</div></a> 
 			<a href="search" title="查詢" id="search"><div class="choiceBtn">查詢</div></a>
-			<a href="informationSheet" title="接種須知" id="informationSheet"><div class="choiceBtn">接種須知</div></a>
+			<a href="informationSheet" title="接種須知" id="informationSheet"><div class="choiceBtn" id="informationSheetBtn">接種須知</div></a>
 			<a href="simulation" title="模擬資料產生" id="simulation"><div class="choiceBtn">模擬資料</div></a>
 			<div class="bg">
 				<img src="images/register.jpg" id="registerImg">
